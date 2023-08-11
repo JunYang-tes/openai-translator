@@ -911,6 +911,7 @@ function ProviderSelector({ value, onChange }: IProviderSelectorProps) {
         : ([
               { label: 'OpenAI', id: 'OpenAI' },
               { label: 'ChatGPT (Web)', id: 'ChatGPT' },
+              { label: "Claude (Web)", id:"Claude"},
               { label: 'Azure', id: 'Azure' },
           ] as {
               label: string

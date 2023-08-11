@@ -959,6 +959,7 @@ function InnerTranslator(props: IInnerTranslatorProps) {
                         }
                         setIsWordMode(message.isWordMode)
                         setTranslatedText((translatedText) => {
+                            console.log(translatedText,message)
                             if (message.isFullText) {
                                 return message.content
                             }
@@ -966,6 +967,7 @@ function InnerTranslator(props: IInnerTranslatorProps) {
                         })
                     },
                     onFinish: (reason) => {
+                        console.log("onFinish",reason)
                         afterTranslate(reason)
                         setTranslatedText((translatedText) => {
                             const result = translatedText
