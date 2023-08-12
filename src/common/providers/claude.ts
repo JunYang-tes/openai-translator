@@ -11,6 +11,9 @@ async function getOrgId(sessionKey: string) {
     }
   })
   const data = await resp.json()
+  if (data.error) {
+    throw data.error
+  }
   return data[0].uuid
 }
 
@@ -61,7 +64,7 @@ async function sendMessage(
     }),
     ...param
   })
-    .catch(e=>param.onError(e.message ?? "Failed to send message"))
+    .catch(e => param.onError(e.message ?? "Failed to send message"))
 }
 
 let orgId: string = ''
@@ -94,11 +97,8 @@ export const claude: Provider = async (param) => {
     {
       signal: param.signal,
       onMessage: (data) => {
-        param.onMessage({
-          content: JSON.parse(data).completion,
-          role: "",
-          isWordMode: param.isWordMode
-        })
+        param.onMessage(
+          JSON.parse(data).completion)
       },
       onError: param.onError
     }

@@ -7,7 +7,6 @@ import { getLangConfig, getLangName, LangCode } from '../common/lang'
 import { getUniversalFetch } from './universal-fetch'
 import { Action } from './internal-services/db'
 import { codeBlock, oneLine, oneLineTrim } from 'common-tags'
-import { claude } from './providers/claude'
 
 export type TranslateMode = 'translate' | 'polishing' | 'summarize' | 'analyze' | 'explain-code' | 'big-bang'
 export type Provider = 'OpenAI' | 'ChatGPT' | 'Azure' | 'Claude'
@@ -404,18 +403,6 @@ Etymology:
         }
     }
 
-    if (settings.provider === 'Claude') {
-      return claude({
-        rolePrompt,
-        commandPrompt,
-        contentPrompt,
-        onMessage: query.onMessage,
-        onError: query.onError,
-        onFinish: query.onFinish,
-        isWordMode,
-        signal: query.signal
-      })
-    }
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     let body: Record<string, any> = {
         model: settings.apiModel,

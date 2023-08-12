@@ -1,18 +1,14 @@
-export type Provider = (params: {
+export type ProviderParam = {
   rolePrompt: string
   commandPrompt: string
   contentPrompt: string
   isWordMode: boolean
   onMessage: (
-    message: {
-      content: string;
-      role: string;
-      isWordMode: boolean
-      isFullText?: boolean
-    }
+    message: string
   ) => void,
   onError: (error: string) => void;
   onFinish: (reason: string) => void;
   onStatusCode?: (statusCode: number) => void;
   signal: AbortSignal;
-}) => Promise<any>
+}
+export type Provider = (params: ProviderParam) => Promise<any>
